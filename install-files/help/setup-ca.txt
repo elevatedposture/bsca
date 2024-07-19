@@ -28,13 +28,10 @@ Dependencies
 -	Functional NTP.
 -	Functional internet (for installer.sh only).
 
-Notes
------
-
-# For brevity, all commands are assumed to be executed within “/opt/bsca” (the default installation directory).
-
 Setup Procedure
 ###############
+
+For brevity, all commands are assumed to be executed within “/opt/bsca” (the default installation directory).
 
 # Generate private key for the root CA
 openssl genrsa -out private/root-ca.prikey 2048
