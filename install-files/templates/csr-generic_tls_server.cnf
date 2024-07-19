@@ -42,7 +42,7 @@ subjectAltName            = @req_subject_alt_names
 [ req_subject_alt_names ]
 
 DNS.1		                  = server1.brittlesbee.int.longbottomlabs.net
-DNS.2 		                = server1
+DNS.2                     = server1
 DNS.3		                  = website.brittlesbee.longbottomlabs.net
 IP.1		                  = 192.168.1.100
 IP.2		                  = 100.100.100.100
