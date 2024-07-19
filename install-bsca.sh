@@ -55,6 +55,7 @@ mkdir -p $BSCAPATH/staging
 ## PLACE FILES
 curl -o $BSCAPATH/help/generate-csr-server.txt https://raw.githubusercontent.com/elevatedposture/bsca/main/install-files/help/generate-csr-server.txt
 curl -o $BSCAPATH/help/generate-csr-user.txt https://raw.githubusercontent.com/elevatedposture/bsca/main/install-files/help/generate-csr-user.txt
+curl -o $BSCAPATH/help/version.txt https://raw.githubusercontent.com/elevatedposture/bsca/main/install-files/help/version.txt
 curl -o $BSCAPATH/help/readme.txt https://raw.githubusercontent.com/elevatedposture/bsca/main/install-files/help/readme.txt
 curl -o $BSCAPATH/help/setup-ca.txt https://raw.githubusercontent.com/elevatedposture/bsca/main/install-files/help/setup-ca.txt
 curl -o $BSCAPATH/help/sign-csr.txt https://raw.githubusercontent.com/elevatedposture/bsca/main/install-files/help/sign-csr.txt
