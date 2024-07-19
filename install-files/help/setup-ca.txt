@@ -1,0 +1,52 @@
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         Help: How to Setup the CA
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+General Information
+###################
+
+The general operational flow for BSCA would be to first set up a "root ca" as a dedicated VM or mini-PC, then SSH to that box for all CA related activities.
+BSCA has been primarily tested on Ubuntu Server 22.04 with OpenSSL 3.1.4, however is likely to work well on any Linux distribution.
+
+Dependencies
+------------
+-	Linux installed, updated, secured.
+-	OpenSSL installed.
+-	Functional NTP.
+-	Functional internet (for installer.sh only).
+
+Notes
+-----
+
+# For brevity, all commands are assumed to be executed within “/opt/bsca” (the default installation directory).
+
+Setup Procedure
+###############
+
+# Generate private key for the root CA
+openssl genrsa -out private/root-ca.prikey 2048
+
+# Modify the root CA CNF file according to the project needs
+vi private/root-ca.cnf
+
+# Generate a CSR for the root CA
+openssl req -new -key private/root-ca.prikey -out private/root-ca.csr -nodes -config private/root-ca.cnf
+
+# Self sign the CSR
+openssl ca -in private/root-ca.csr -keyfile private/root-ca.prikey -config private/root-ca.cnf -selfsign -out public/root-ca.crt
+
+# Verify the root cert is as you like
+openssl x509 -in public/root-ca.crt -text
