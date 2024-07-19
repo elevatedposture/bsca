@@ -22,32 +22,32 @@ default_ca = CA
 [ CA ]
 
 #  The directory structure for this CA
-dir 					  = /opt/bsca
-run 					  = $dir/run
-certs 					= $dir/run
-new_certs_dir 	= $dir/run/signed
-database 				= $dir/run/database
-serial					= $dir/run/serial
-RANDFILE				= $dir/run/rand
-private_key			= $dir/private/root-ca.prikey
-crldir 					= $dir/public
-crl						  = $dir/public/crl.pem
-certificate			= $dir/public/root-ca.crt
+dir              = /opt/bsca
+run              = $dir/run
+certs            = $dir/run
+new_certs_dir    = $dir/run/signed
+database         = $dir/run/database
+serial           = $dir/run/serial
+RANDFILE         = $dir/run/rand
+private_key      = $dir/private/root-ca.prikey
+crldir           = $dir/public
+crl              = $dir/public/crl.pem
+certificate      = $dir/public/root-ca.crt
 
-name_opt    		= ca_default
-cert_opt    		= ca_default
-policy      		= simple_policy
+name_opt        = ca_default
+cert_opt        = ca_default
+policy          = simple_policy
 x509_extensions = x509_ext
 unique_subject  = no
 
 # How long the CA certificate is valid for
-default_days 		= 365
+default_days    = 365
 
 # The message digest for signing the certificate
-default_md 			= sha256
+default_md      = sha256
 
 # What to do with CSR extensions
-copy_extensions = copy
+copy_extensions  = copy
 
 [ simple_policy ]
 
