@@ -1,0 +1,96 @@
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         private/root-ca.cnf
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+[ req ]
+
+prompt             		= no
+string_mask        		= default
+distinguished_name 		= req_dn
+
+# The size of the keys in bits:
+default_bits       		= 2048
+
+[ req_dn ]
+
+countryName 			      = CA
+stateOrProvinceName 	  = PQ
+localityName 			      = Montreal
+organizationName 		    = Logbottom Labs
+organizationalUnitName 	= BSCA4DAW1N
+commonName 				      = Project Brittlesbee Certification Authority 1
+
+[ req_ext ]
+
+# Extensions added to the request go here
+
+[ ca ]
+
+default_ca = CA
+
+[ CA ]
+
+#  The directory structure for this CA
+dir 					  = /opt/bsca
+run 					  = $dir/run
+certs 					= $dir/run
+new_certs_dir 	= $dir/run/signed
+database 				= $dir/run/database
+serial					= $dir/run/serial
+RANDFILE				= $dir/run/rand
+private_key			= $dir/private/root-ca.prikey
+crldir 					= $dir/public
+crl						  = $dir/public/crl.pem
+certificate			= $dir/public/root-ca.crt
+
+name_opt    		= ca_default
+cert_opt    		= ca_default
+policy      		= simple_policy
+x509_extensions = x509_ext
+unique_subject  = no
+
+# How long the CA certificate is valid for
+default_days 		= 3650
+
+# The message digest for self-signing the certificate
+default_md 			= sha256
+
+# What to do with CSR extensions
+copy_extensions = copy
+
+[ simple_policy ]
+
+countryName             = optional
+stateOrProvinceName     = optional
+localityName            = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = optional
+domainComponent         = optional
+emailAddress            = optional
+name                    = optional
+surname                 = optional
+givenName               = optional
+dnQualifier             = optional
+
+[ x509_ext ]
+
+# These extensions are for a CA certificate
+
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always
+basicConstraints        = critical, CA:TRUE
+keyUsage 				        = critical, keyCertSign, cRLSign
