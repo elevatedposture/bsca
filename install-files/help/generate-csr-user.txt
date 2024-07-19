@@ -1,0 +1,68 @@
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         Help: How to generate a key/csr on behalf of a user
+#                   (a generally accepted practice executed very poorly).
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+General Information
+###################
+
+USER/CLIENT CERTIFICATES OFTEN REQUIRE BUNDLING IN TO PKCS12 FORMAT, AS SUCH THIS PROCEDURE HAS TWO SEPERATE PARTS:
+
+1. CSR PROCEDURE: to be executed before the CA signs the certificate
+
+2. BUNDLING PROCEDURE: to be executed after the CA signs the certificate
+
+CSR Procedure
+#############
+
+# Clean up from last use (just in case)
+rm -fr /opt/bsca/staging/*
+
+# Generate a private key on the users behalf
+# either with or without a passphrase
+
+# option: without passphrase
+openssl genrsa -out staging/example_user.prikey 2048
+
+# option: with passphrase
+# note that upon import in to a keystore, the passphrase is not transfered
+openssl genrsa -out staging/example_user.prikey -aes256 -passout stdin 2048
+
+# Create a CSR configuration file from the appropriate template
+cp templates/csr-broad_user.cnf staging/example_user.cnf
+
+# Modify the template values in the new CSR CNF file accordingly
+vi staging/example_user.cnf
+
+# Generate a CSR on the users behalf
+openssl req -new -key staging/example_user.prikey -nodes -config staging/example_user.cnf -out staging/example_user.csr
+
+Bundling Procedure
+##################
+
+# Combine the root ca certificate, user certificate, and user private key on the users behalf
+cat staging/example_user.prikey staging/example_user.crt public/root-ca.crt > staging/example_user.pem
+
+# Create a PKCS12 file
+# two common options for bundling are provided below:
+# 1. AES: will not work well with Apple devices/configurator, but does seem to work everywhere else
+# 2. 3DES: will work with Apple devices/configurator, and potentially other devices that also hate security
+
+    # option AES:
+    openssl pkcs12 -export -inkey staging/example_user.prikey -in staging/example_user.pem -certfile public/root-ca.crt -out staging/example_user.pfx
+
+    # option 3DES:
+    openssl pkcs12 -export -inkey staging/example_user.prikey -in staging/example_user.pem -certfile public/root-ca.crt -legacy -macalg SHA1 -keypbe PBE-SHA1-3DES -certpbe PBE-SHA1-3DES -out staging/example_user-3DES.pfx
