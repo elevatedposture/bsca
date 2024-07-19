@@ -1,8 +1,15 @@
 # bsca
 The Basically Shenanigans Certificate Authority (“BSCA”) is a general purpose CA designed to provide x509 services within lab projects.
 
+This project is not code.  This project is a collection of configurations and procedures to implement the stunning and spectacular work done by [The OpenSSL Project](https://www.openssl.org/).
+
+The project includes two – very permissive – certificate and signing request `templates`: (**i**) a TLS Server, suitable for pretty much any TLS host and (**ii**) a Generic client certificate, suitable for a wide variety of user applications. The `help` section also includes guides to (**i**) Setup the CA, (**ii**) Generate Server/Client CSRs, (**iii**) Sign a CSR.
+
 # Disclaimer
-As the name suggests, BSCA is not suitable for production use.  It is an excellent option to spin up quickly for a project within a lab, however it is not at all suitable to protect communications of any value in production.  You have been warned, proceed at your own risk. **No warranties are given**.
+
+**No warranties are given**
+
+As the name suggests, BSCA is not suitable for production use.  It is an excellent option to spin up quickly for a project within a lab, however it is not at all suitable to protect communications of any value in production.  For example, BSCA does not include any mechanism by which to distribute a revocation list, therefore every signed certificate is valid until its expiration date. If you don’t know exactly what this means, you should not use BSCA outside of a closed and trusted network.
 
 # License
 BSCA is licensed with Creative Commons Attribution-NonCommercial-ShareAlike.
