@@ -1,0 +1,37 @@
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         Help: How to generate a key/csr on behalf of another
+#                   TLS server (a generally unwise practice).
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+Procedure
+#########
+
+# Note: For brevity, all commands are assumed to be executed within “/opt/bsca” (the default installation directory).
+
+# Clean up from last use (just in case)
+rm -fr /opt/bsca/staging/*
+
+# Generate a private key on the servers behalf
+openssl genrsa -out staging/example_server.prikey 2048
+
+# Create a CSR configuration file from the appropriate template
+cp templates/csr-generic_tls_server.cnf staging/example_server.cnf
+
+# Modify the template values in the new CSR CNF file accordingly
+vi staging/example_server.cnf
+
+# Generate a CSR on the servers behalf
+openssl req -new -key staging/example_server.prikey -nodes -config staging/example_server.cnf -out staging/example_server.csr
