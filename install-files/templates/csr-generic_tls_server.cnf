@@ -1,0 +1,48 @@
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         templates/csr-generic_tls_server.cnf
+#                   A generic tempalte suitable for most TLS servers.
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+[ req ]
+
+prompt = no
+default_keyfile 			    = example_server.prikey
+distinguished_name 			  = req_distinguished_name
+req_extensions 				    = req_v3
+
+[ req_distinguished_name ]
+
+countryName 				      = CA
+stateOrProvinceName 		  = Quebec
+localityName 				      = Montreal
+organizationName 			    = Longbottom Labs
+0.organizationalUnitName 	= PRJ BRITTLESBEE
+1.organizationalUnitName 	= WWW SRVS
+commonName 					      = Project Brittlesbee WWW SRV 1
+
+[ req_v3 ]
+
+keyUsage 					        = digitalSignature, keyEncipherment, dataEncipherment
+extendedKeyUsage 			    = serverAuth, clientAuth
+subjectAltName 				    = @req_subject_alt_names
+
+[ req_subject_alt_names ]
+
+DNS.1		                  = server1.brittlesbee.int.longbottomlabs.net
+DNS.2 		                = server1
+DNS.3		                  = website.brittlesbee.longbottomlabs.net
+IP.1		                  = 192.168.1.100
+IP.2		                  = 100.100.100.100
