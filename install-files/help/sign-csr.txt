@@ -1,0 +1,39 @@
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         Help: How to sign a CSR with the CA.
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+General Information
+###################
+
+BSCA ON ITS OWN HAS NO MECHANISUM TO DISTRIBUTE REVOCATION
+LISTS - SO YOU SHOULD BE VERY SURE BEFORE YOU SIGN ANY CSR.
+
+For brevity, all commands are assumed to be executed within “/opt/bsca” (the default installation directory).
+
+Procedure
+#########
+
+# Verify the CSR is appropriate for signing
+openssl req -in staging/example_server.csr -noout -text -verify
+
+# Sign the CSR
+openssl ca -in staging/example_server.csr -cert public/root-ca.crt -keyfile private/root-ca.prikey -config private/signing-generic.cnf -out staging/example_server.crt
+
+# Verify the signed cert is as you like
+openssl x509 -in staging/example_server.crt -text
+
+# After collecting needed files, clean up
+rm -fr /opt/bsca/staging/*
