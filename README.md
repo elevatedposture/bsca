@@ -2,7 +2,7 @@
 The Basically Shenanigans Certificate Authority (“BSCA”) is a general purpose CA designed to provide x509 services within lab projects.
 
 # Disclaimer
-As the name suggests, BSCA is not suitable for production use.  It is an excellent option to spin up quickly for a project within a lab, however it is not at all suitable to protect communications of any value in production.  You have been warned, proceed at your own risk.
+As the name suggests, BSCA is not suitable for production use.  It is an excellent option to spin up quickly for a project within a lab, however it is not at all suitable to protect communications of any value in production.  You have been warned, proceed at your own risk. **No warranties are given**.
 
 # License
 BSCA is licensed with Creative Commons Attribution-NonCommercial-ShareAlike.
