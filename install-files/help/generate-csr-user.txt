@@ -25,6 +25,8 @@ USER/CLIENT CERTIFICATES OFTEN REQUIRE BUNDLING IN TO PKCS12 FORMAT, AS SUCH THI
 
 2. BUNDLING PROCEDURE: to be executed after the CA signs the certificate
 
+For brevity, all commands are assumed to be executed within “/opt/bsca” (the default installation directory).
+
 CSR Procedure
 #############
 
