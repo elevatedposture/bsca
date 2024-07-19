@@ -19,25 +19,25 @@
 [ req ]
 
 prompt = no
-default_keyfile 			    = example_server.prikey
-distinguished_name 			  = req_distinguished_name
-req_extensions 				    = req_v3
+default_keyfile         = example_server.prikey
+distinguished_name      = req_distinguished_name
+req_extensions          = req_v3
 
 [ req_distinguished_name ]
 
-countryName 				      = CA
-stateOrProvinceName 		  = Quebec
-localityName 				      = Montreal
-organizationName 			    = Longbottom Labs
-0.organizationalUnitName 	= PRJ BRITTLESBEE
-1.organizationalUnitName 	= WWW SRVS
-commonName 					      = Project Brittlesbee WWW SRV 1
+countryName                = CA
+stateOrProvinceName        = Quebec
+localityName               = Montreal
+organizationName           = Longbottom Labs
+0.organizationalUnitName   = PRJ BRITTLESBEE
+1.organizationalUnitName   = WWW SRVS
+commonName                 = Project Brittlesbee WWW SRV 1
 
 [ req_v3 ]
 
-keyUsage 					        = digitalSignature, keyEncipherment, dataEncipherment
-extendedKeyUsage 			    = serverAuth, clientAuth
-subjectAltName 				    = @req_subject_alt_names
+keyUsage                  = digitalSignature, keyEncipherment, dataEncipherment
+extendedKeyUsage          = serverAuth, clientAuth
+subjectAltName            = @req_subject_alt_names
 
 [ req_subject_alt_names ]
 
