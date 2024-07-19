@@ -1,0 +1,50 @@
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         templates/csr-generic_user.cnf
+#                   A generic tempalte suitable for many user applications.
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+[ req ]
+
+prompt                = no
+default_keyfile       = ian_grimm.prikey
+distinguished_name    = req_distinguished_name
+req_extensions        = req_v3
+
+[ req_distinguished_name ]
+
+commonName                  = Ian Grimm
+emailAddress                = ian.grimm@longbottomlabs.net
+0.organizationalUnitName    = PRJ BRITTLESBEE
+1.organizationalUnitName    = MQHQ
+0.domainComponent           = int
+1.domainComponent           = longbottomlabs
+2.domainComponent           = net
+organizationName            = Longbottom Labs
+countryName                 = CA
+stateOrProvinceName         = Quebec
+localityName                = Montreal
+
+[ req_v3 ]
+
+keyUsage                    = critical, digitalSignature, keyEncipherment, dataEncipherment, nonRepudiation
+extendedKeyUsage            = clientAuth, emailProtection, codeSigning, msEFS, msSmartcardLogin, ipsecTunnel, ipsecUser
+subjectAltName              = @req_subject_alt_names
+
+[ req_subject_alt_names ]
+
+email.1                    = ian.grimm@longbottomlabs.net
+otherName.1                = msUPN;UTF8:ian.grimm@int.longbottomlabs.net
+otherName.2                = msUPN;UTF8:ian.grimm
