@@ -1,5 +1,22 @@
-bsca
-####
+#
+#   #########################################################################
+#
+#   Application:    Basically Shenanigans Certificate Authority (“BSCA”) 
+#   Module:         README
+#
+#   #########################################################################
+#
+#   Elevated Posture Incorporated
+#   great.service@elevatedposture.ca
+#
+#   Licensed with Creative Commons Attribution-NonCommercial-ShareAlike
+#   https://creativecommons.org/licenses/by-nc-nd/4.0/
+#
+#   #########################################################################
+#
+
+General Information
+###################
 
 The Basically Shenanigans Certificate Authority (“BSCA”) is a general purpose CA designed to provide x509 services within lab projects.
 
