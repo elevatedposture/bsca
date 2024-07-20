@@ -44,7 +44,7 @@ rm -fr /opt/bsca/staging/*
     openssl genrsa -out staging/example_user.prikey -aes256 -passout stdin 2048
 
 # Create a CSR configuration file from the appropriate template
-cp templates/csr-broad_user.cnf staging/example_user.cnf
+cp templates/csr-generic_user.cnf staging/example_user.cnf
 
 # Modify the template values in the new CSR CNF file accordingly
 vi staging/example_user.cnf
