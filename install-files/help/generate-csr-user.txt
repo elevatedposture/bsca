@@ -36,12 +36,12 @@ rm -fr /opt/bsca/staging/*
 # Generate a private key on the users behalf
 # either with or without a passphrase
 
-# option: without passphrase
-openssl genrsa -out staging/example_user.prikey 2048
+    # option without passphrase:
+    openssl genrsa -out staging/example_user.prikey 2048
 
-# option: with passphrase
-# note that upon import in to a keystore, the passphrase is not transfered
-openssl genrsa -out staging/example_user.prikey -aes256 -passout stdin 2048
+    # option with passphrase:
+    # note that upon import in to a keystore, the passphrase is not transfered
+    openssl genrsa -out staging/example_user.prikey -aes256 -passout stdin 2048
 
 # Create a CSR configuration file from the appropriate template
 cp templates/csr-broad_user.cnf staging/example_user.cnf
